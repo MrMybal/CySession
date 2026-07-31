@@ -1,0 +1,14 @@
+; Meta Quest is an Android target. Enable EOS or the authorized Meta/Oculus provider.
+; DefaultEngine.ini / AndroidEngine.ini
+[OnlineSubsystem]
+DefaultPlatformService=EOS
+
+; Add the same EOS artifact and NetDriver settings as Android-GooglePlay.ini.example.
+
+; DefaultGame.ini / AndroidGame.ini
+[/Script/CySession.CySessionSettings]
+ActiveProfileName=EOS_MetaQuest
+bValidateConfigurationOnStartup=True
+
+; Native Meta sessions alternative when an Oculus/Meta OSS is installed:
+; ActiveProfileName=Oculus_MetaQuest

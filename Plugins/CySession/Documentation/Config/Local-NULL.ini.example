@@ -1,0 +1,8 @@
+; DefaultEngine.ini
+[OnlineSubsystem]
+DefaultPlatformService=NULL
+
+; DefaultGame.ini
+[/Script/CySession.CySessionSettings]
+ActiveProfileName=Local_NULL
+bValidateConfigurationOnStartup=True

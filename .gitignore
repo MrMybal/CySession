@@ -1,0 +1,75 @@
+# ============================================================
+# Unreal Engine - fichiers générés
+# ============================================================
+
+**/Binaries/
+**/DerivedDataCache/
+**/Intermediate/
+**/Saved/
+
+# Résultats de compilation/package
+**/Cooked/
+**/StagedBuilds/
+**/ArchivedBuilds/
+
+# Build peut contenir des fichiers manuels dans certains projets.
+# Supprime cette règle si tu as des fichiers importants dans Build/.
+**/Build/
+
+# ============================================================
+# Assets Unreal exclus : dépôt code uniquement
+# ============================================================
+
+/Content/
+**/Plugins/**/Content/
+
+/SourceArt/
+
+# Données de lighting construites
+*_BuiltData.uasset
+
+# ============================================================
+# Visual Studio / Rider / VS Code
+# ============================================================
+
+.vs/
+.idea/
+.vscode/
+
+*.sln
+*.suo
+*.user
+*.userprefs
+*.opensdf
+*.sdf
+*.VC.db
+*.VC.opendb
+*.code-workspace
+
+# ============================================================
+# Fichiers compilés
+# ============================================================
+
+*.obj
+*.o
+*.lo
+*.slo
+*.pch
+*.gch
+
+*.dll
+*.so
+*.dylib
+*.exe
+*.lib
+*.a
+
+# ============================================================
+# Système et logs
+# ============================================================
+
+*.log
+
+.DS_Store
+Thumbs.db
+Desktop.ini

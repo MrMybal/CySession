@@ -1,0 +1,24 @@
+; Enable OnlineSubsystemEOS in the .uproject.
+; DefaultEngine.ini
+[OnlineSubsystem]
+DefaultPlatformService=EOS
+
+[/Script/OnlineSubsystemEOS.EOSSettings]
+DefaultArtifactName=YourArtifact
+bUseEAS=True
+bUseEOSConnect=True
+bUseNewLoginFlow=True
+bEnableSocialOverlay=True
++Artifacts=(ArtifactName="YourArtifact",ClientId="...",ClientSecret="...",ProductId="...",SandboxId="...",DeploymentId="...",ClientEncryptionKey="...")
+
+[/Script/Engine.GameEngine]
+!NetDriverDefinitions=ClearArray
++NetDriverDefinitions=(DefName="GameNetDriver",DriverClassName="/Script/OnlineSubsystemEOS.NetDriverEOS",DriverClassNameFallback="/Script/OnlineSubsystemUtils.IpNetDriver")
+
+[/Script/OnlineSubsystemEOS.NetDriverEOS]
+bIsUsingP2PSockets=True
+
+; DefaultGame.ini - choose one profile per distributed build.
+[/Script/CySession.CySessionSettings]
+ActiveProfileName=EOS_Windows_Epic
+bValidateConfigurationOnStartup=True

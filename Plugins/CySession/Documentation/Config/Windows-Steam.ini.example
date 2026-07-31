@@ -1,0 +1,16 @@
+; Enable OnlineSubsystemSteam in the .uproject.
+; DefaultEngine.ini
+[OnlineSubsystem]
+DefaultPlatformService=Steam
+
+[OnlineSubsystemSteam]
+bEnabled=True
+SteamDevAppId=480
+
+; DefaultGame.ini
+[/Script/CySession.CySessionSettings]
+ActiveProfileName=Steam_Windows
+bValidateConfigurationOnStartup=True
+
+; For EOS cross-play while distributed on Steam, configure EOS instead and use:
+; ActiveProfileName=EOS_Windows_Steam

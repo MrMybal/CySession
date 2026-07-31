@@ -1,0 +1,17 @@
+; Cross-play path: enable OnlineSubsystemEOS.
+; DefaultEngine.ini / IOSEngine.ini
+[OnlineSubsystem]
+DefaultPlatformService=EOS
+
+; Add the EOS artifact and NetDriver settings documented in EOS-Setup.md.
+
+; DefaultGame.ini / IOSGame.ini
+[/Script/CySession.CySessionSettings]
+ActiveProfileName=EOS_iOS_Apple
+bValidateConfigurationOnStartup=True
+
+; Game Center-only alternative: enable OnlineSubsystemIOS and use:
+; [OnlineSubsystem]
+; DefaultPlatformService=IOS
+; [/Script/CySession.CySessionSettings]
+; ActiveProfileName=IOS_GameCenter

@@ -1,0 +1,12 @@
+; Recommended cross-play path: enable and configure Epic's OnlineSubsystemEOS.
+; DefaultEngine.ini
+[OnlineSubsystem]
+DefaultPlatformService=EOS
+
+; DefaultGame.ini
+[/Script/CySession.CySessionSettings]
+ActiveProfileName=EOS_Windows_GOG
+bValidateConfigurationOnStartup=True
+
+; Native Galaxy alternative when a third-party Galaxy OSS is installed:
+; ActiveProfileName=GOG_Galaxy_Windows

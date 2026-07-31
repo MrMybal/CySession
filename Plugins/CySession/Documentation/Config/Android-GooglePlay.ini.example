@@ -1,0 +1,23 @@
+; Enable OnlineSubsystemEOS and OnlineSubsystemGooglePlay as required by the project.
+; GooglePlay alone has no IOnlineSession in UE 5.5.
+; DefaultEngine.ini / AndroidEngine.ini
+[OnlineSubsystem]
+DefaultPlatformService=EOS
+
+[/Script/OnlineSubsystemEOS.EOSSettings]
+DefaultArtifactName=YourArtifact
+bUseEOSConnect=True
+bUseNewLoginFlow=True
++Artifacts=(ArtifactName="YourArtifact",ClientId="...",ClientSecret="...",ProductId="...",SandboxId="...",DeploymentId="...",ClientEncryptionKey="...")
+
+[/Script/Engine.GameEngine]
+!NetDriverDefinitions=ClearArray
++NetDriverDefinitions=(DefName="GameNetDriver",DriverClassName="/Script/OnlineSubsystemEOS.NetDriverEOS",DriverClassNameFallback="/Script/OnlineSubsystemUtils.IpNetDriver")
+
+[/Script/OnlineSubsystemEOS.NetDriverEOS]
+bIsUsingP2PSockets=True
+
+; DefaultGame.ini / AndroidGame.ini
+[/Script/CySession.CySessionSettings]
+ActiveProfileName=EOS_Android_GooglePlay
+bValidateConfigurationOnStartup=True
