@@ -38,7 +38,7 @@ Le guide complet d'installation, de sélection des presets et de validation se t
 
 - `Local_NULL` ;
 - `EOS_Windows_Epic`, `EOS_Windows_Steam`, `EOS_Windows_GOG` ;
-- `Steam_Windows`, `GOG_Galaxy_Windows` ;
+- `Steam_Windows`, `Steam_Windows_Full`, `GOG_Galaxy_Windows` ;
 - `EOS_Android_GooglePlay`, `EOS_MetaQuest`, `Oculus_MetaQuest` ;
 - `EOS_iOS_Apple`, `IOS_GameCenter`.
 
@@ -85,14 +85,18 @@ Le provider par défaut vient de `[OnlineSubsystem] DefaultPlatformService`. Il 
 - Pour un test local : activer `OnlineSubsystemNull` et utiliser `DefaultPlatformService=NULL`.
 - Pour Meta, Apple, GOG et Android : suivre [Documentation/Platform-Providers.md](Documentation/Platform-Providers.md).
 - Pour EOS/cross-play : suivre [Documentation/EOS-Setup.md](Documentation/EOS-Setup.md).
-- Pour Steam/console : activer et configurer le plugin Online Subsystem du SDK concerné ; les mêmes Blueprints CySession restent valables.
+- Pour Steam autonome sans EOS : suivre [Documentation/Steam-Full-Setup.md](Documentation/Steam-Full-Setup.md).
+- Pour les consoles : activer et configurer le plugin Online Subsystem du SDK concerné ; les mêmes Blueprints CySession restent valables.
 
 ## Fichiers principaux
 
 - `CySessionSubsystem.h/.cpp` : orchestration asynchrone et événements Blueprint.
 - `CySessionTypes.h` : options, résultats et enums Blueprint.
 - `CySessionSettings.h` : sélection du provider et tag plateforme.
+- `CySteamSubsystem.h/.cpp` : amis, présence, achievements, leaderboards, Steam Cloud, overlay et voix Steam en Blueprint.
 
 ## Limite de cette première couche
 
-CySession couvre l'identité et les sessions de jeu. Les SDK Meta et GOG ne sont pas redistribuables et doivent être ajoutés par le projet final. Sur Android, `OnlineSubsystemGooglePlay` fournit l'identité mais pas les sessions dans UE 5.5 : utiliser EOS ou un autre backend de session. Les amis, parties persistantes, matchmaking dédié, voice chat, sanctions, achievements, stats et cloud saves restent des domaines séparés.
+Le socle commun couvre l'identité et les sessions de jeu. Le mode `Steam_Windows_Full` ajoute les services Steam pris en charge par `OnlineSubsystemSteam` : amis, rich presence, achievements, leaderboards, Remote Storage, overlay et voix. Les fonctions Steamworks sans interface Unreal publique, comme Workshop/UGC et Inventory Service, demandent encore un module Steamworks direct séparé.
+
+Les SDK Meta et GOG ne sont pas redistribuables et doivent être ajoutés par le projet final. Sur Android, `OnlineSubsystemGooglePlay` fournit l'identité mais pas les sessions dans UE 5.5 : utiliser EOS ou un autre backend de session.

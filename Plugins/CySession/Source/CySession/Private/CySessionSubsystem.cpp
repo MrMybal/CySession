@@ -546,6 +546,13 @@ FCySessionProviderCapabilities UCySessionSubsystem::GetProviderCapabilities(FNam
 	Capabilities.bProviderAvailable = Provider != nullptr;
 	Capabilities.bIdentityAvailable = Provider && Provider->GetIdentityInterface().IsValid();
 	Capabilities.bSessionsAvailable = Provider && Provider->GetSessionInterface().IsValid();
+	Capabilities.bFriendsAvailable = Provider && Provider->GetFriendsInterface().IsValid();
+	Capabilities.bPresenceAvailable = Provider && Provider->GetPresenceInterface().IsValid();
+	Capabilities.bAchievementsAvailable = Provider && Provider->GetAchievementsInterface().IsValid();
+	Capabilities.bLeaderboardsAvailable = Provider && Provider->GetLeaderboardsInterface().IsValid();
+	Capabilities.bUserCloudAvailable = Provider && Provider->GetUserCloudInterface().IsValid();
+	Capabilities.bVoiceAvailable = Provider && Provider->GetVoiceInterface().IsValid();
+	Capabilities.bExternalUIAvailable = Provider && Provider->GetExternalUIInterface().IsValid();
 	Capabilities.bIsActive = Provider && Provider == GetOnlineSubsystem();
 	return Capabilities;
 }
@@ -575,6 +582,7 @@ FCySessionCreateOptions UCySessionSubsystem::MakeDefaultCreateOptions(const int3
 		Options.bAllowCrossplay = Profile->bAllowCrossplayByDefault;
 		Options.bAllowCrossStore = Profile->bAllowCrossStoreByDefault;
 		Options.bUseLobbies = Profile->bUseLobbiesByDefault;
+		Options.bUsesStats = Profile->bUseStatsByDefault;
 	}
 	return Options;
 }
@@ -840,10 +848,12 @@ bool UCySessionSubsystem::BeginCreateSession(const FCySessionCreateOptions& Opti
 	Settings.bAllowJoinInProgress = Options.bAllowJoinInProgress;
 	Settings.bIsLANMatch = Options.bLAN;
 	Settings.bIsDedicated = Options.bDedicated;
-	Settings.bUsesStats = false;
+	Settings.bUsesStats = Options.bUsesStats;
 	Settings.bAllowInvites = Options.bAllowInvites;
-	Settings.bUsesPresence = Options.bUsesPresence;
-	Settings.bAllowJoinViaPresence = Options.bUsesPresence;
+	const bool bSteamProvider = GetActiveSubsystemName().ToString().Equals(TEXT("Steam"), ESearchCase::IgnoreCase);
+	const bool bUsesPresence = bSteamProvider ? Options.bUseLobbies : Options.bUsesPresence;
+	Settings.bUsesPresence = bUsesPresence;
+	Settings.bAllowJoinViaPresence = bUsesPresence;
 	Settings.bAllowJoinViaPresenceFriendsOnly = false;
 	Settings.bUseLobbiesIfAvailable = Options.bUseLobbies;
 	Settings.bUseLobbiesVoiceChatIfAvailable = Options.bUseLobbyVoiceChat;

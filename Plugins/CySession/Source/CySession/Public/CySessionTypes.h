@@ -173,6 +173,27 @@ struct CYSESSION_API FCySessionProviderCapabilities
 	bool bSessionsAvailable = false;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Cy Session|Provider")
+	bool bFriendsAvailable = false;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Cy Session|Provider")
+	bool bPresenceAvailable = false;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Cy Session|Provider")
+	bool bAchievementsAvailable = false;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Cy Session|Provider")
+	bool bLeaderboardsAvailable = false;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Cy Session|Provider")
+	bool bUserCloudAvailable = false;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Cy Session|Provider")
+	bool bVoiceAvailable = false;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Cy Session|Provider")
+	bool bExternalUIAvailable = false;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Cy Session|Provider")
 	bool bIsActive = false;
 };
 
@@ -219,6 +240,9 @@ struct CYSESSION_API FCySessionPlatformProfile
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Session")
 	bool bUseLobbiesByDefault = true;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Session")
+	bool bUseStatsByDefault = false;
 };
 
 /** Result of validating the selected profile and its runtime Online Subsystem. */
@@ -299,6 +323,9 @@ struct CYSESSION_API FCySessionCreateOptions
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Cy Session")
 	bool bUsesPresence = true;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Cy Session")
+	bool bUsesStats = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Cy Session")
 	bool bUseLobbies = true;

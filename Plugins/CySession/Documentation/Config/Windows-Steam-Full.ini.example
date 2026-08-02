@@ -1,0 +1,37 @@
+; Full native Steam mode. EOS is not loaded or used by this configuration.
+; Enable OnlineSubsystemSteam in the project's .uproject before packaging.
+;
+; Replace 480 with the real App ID for every production build. Keep the
+; steam_appid.txt file for local development only; do not ship that file.
+
+; DefaultEngine.ini
+[OnlineSubsystem]
+DefaultPlatformService=Steam
+
+[OnlineSubsystemSteam]
+bEnabled=True
+SteamDevAppId=480
+GameServerQueryPort=27015
+bRelaunchInSteam=False
+bVACEnabled=1
+bInitServerOnClient=True
+bUseSteamNetworking=True
+bAllowP2PPacketRelay=True
+P2PConnectionTimeout=90
+
+; Optional achievements. IDs must match the Steamworks partner site and must
+; be contiguous: Achievement_0_Id, Achievement_1_Id, etc.
+; Achievement_0_Id=ACH_WIN_ONE_GAME
+; Achievement_1_Id=ACH_WIN_100_GAMES
+
+[/Script/Engine.GameEngine]
+!NetDriverDefinitions=ClearArray
++NetDriverDefinitions=(DefName="GameNetDriver",DriverClassName="/Script/OnlineSubsystemSteam.SteamNetDriver",DriverClassNameFallback="/Script/OnlineSubsystemUtils.IpNetDriver")
+
+[/Script/OnlineSubsystemSteam.SteamNetDriver]
+NetConnectionClassName="/Script/OnlineSubsystemSteam.SteamNetConnection"
+
+; DefaultGame.ini
+[/Script/CySession.CySessionSettings]
+ActiveProfileName=Steam_Windows_Full
+bValidateConfigurationOnStartup=True

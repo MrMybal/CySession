@@ -29,12 +29,15 @@ namespace
 
 UCySessionSettings::UCySessionSettings()
 {
-	PlatformProfiles.Reserve(11);
+	PlatformProfiles.Reserve(12);
 	PlatformProfiles.Add(MakeProfile(TEXT("Local_NULL"), TEXT("NULL"), ECySessionPlatformType::Auto, ECySessionStoreType::Other, TEXT(""), false, false, false));
 	PlatformProfiles.Add(MakeProfile(TEXT("EOS_Windows_Epic"), TEXT("EOS"), ECySessionPlatformType::Windows, ECySessionStoreType::EpicGamesStore, TEXT("accountportal"), true, true));
 	PlatformProfiles.Add(MakeProfile(TEXT("EOS_Windows_Steam"), TEXT("EOS"), ECySessionPlatformType::Windows, ECySessionStoreType::Steam, TEXT(""), true, true));
 	PlatformProfiles.Add(MakeProfile(TEXT("EOS_Windows_GOG"), TEXT("EOS"), ECySessionPlatformType::Windows, ECySessionStoreType::GOG, TEXT(""), true, true));
 	PlatformProfiles.Add(MakeProfile(TEXT("Steam_Windows"), TEXT("Steam"), ECySessionPlatformType::Windows, ECySessionStoreType::Steam, TEXT(""), false, false));
+	FCySessionPlatformProfile FullSteam = MakeProfile(TEXT("Steam_Windows_Full"), TEXT("Steam"), ECySessionPlatformType::Windows, ECySessionStoreType::Steam, TEXT(""), false, false);
+	FullSteam.bUseStatsByDefault = true;
+	PlatformProfiles.Add(MoveTemp(FullSteam));
 	PlatformProfiles.Add(MakeProfile(TEXT("GOG_Galaxy_Windows"), TEXT("Galaxy"), ECySessionPlatformType::Windows, ECySessionStoreType::GOG, TEXT(""), false, false));
 	PlatformProfiles.Add(MakeProfile(TEXT("EOS_Android_GooglePlay"), TEXT("EOS"), ECySessionPlatformType::Android, ECySessionStoreType::GooglePlay, TEXT(""), true, true));
 	PlatformProfiles.Add(MakeProfile(TEXT("EOS_MetaQuest"), TEXT("EOS"), ECySessionPlatformType::MetaQuest, ECySessionStoreType::MetaHorizon, TEXT(""), true, true));

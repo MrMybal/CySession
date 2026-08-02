@@ -22,7 +22,8 @@ Ouvrir `Project Settings > Plugins > Cy Session` et renseigner `Active Profile N
 | Développement local | `Local_NULL` | NULL |
 | Epic Games Store / Windows | `EOS_Windows_Epic` | EOS Epic natif |
 | Steam avec cross-play EOS | `EOS_Windows_Steam` | EOS Epic natif |
-| Steam natif uniquement | `Steam_Windows` | Steam |
+| Steam natif sessions uniquement | `Steam_Windows` | Steam |
+| Steam natif avec services Blueprint | `Steam_Windows_Full` | Steam, sans EOS |
 | GOG avec cross-play EOS | `EOS_Windows_GOG` | EOS Epic natif |
 | GOG Galaxy natif | `GOG_Galaxy_Windows` | Plugin Galaxy tiers |
 | Android / Google Play | `EOS_Android_GooglePlay` | EOS ou backend tiers |
@@ -75,6 +76,7 @@ Des modèles copiables sont fournis dans [Documentation/Config](Config) :
 - `Local-NULL.ini.example` ;
 - `Windows-EOS.ini.example` ;
 - `Windows-Steam.ini.example` ;
+- `Windows-Steam-Full.ini.example` ;
 - `Windows-GOG.ini.example` ;
 - `Android-GooglePlay.ini.example` ;
 - `Android-MetaQuest.ini.example` ;
@@ -98,7 +100,7 @@ Activer `OnlineSubsystemEOS`. Suivre [EOS-Setup.md](EOS-Setup.md). Le plugin Red
 
 ### Steam
 
-Activer `OnlineSubsystemSteam`. `Steam_Windows` limite par défaut le cross-store. Pour Steam vers GOG/console/mobile, sélectionner un profil EOS commun.
+Activer `OnlineSubsystemSteam`. Pour un jeu Steam autonome qui ne charge pas EOS, sélectionner `Steam_Windows_Full` et suivre [Steam-Full-Setup.md](Steam-Full-Setup.md). `CySteamSubsystem` expose en Blueprint les amis, la présence, les achievements, les leaderboards, Steam Cloud, l'overlay et la voix. Pour Steam vers GOG/console/mobile, sélectionner au contraire un profil EOS commun.
 
 ### Apple
 
